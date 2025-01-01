@@ -1,0 +1,58 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        {% block style %}
+        {% endblock %}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <!--slick slider stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"/>
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet"/>
+    <!-- slick slider -->
+
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}"/>
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+<!-- header section strats -->
+{% include 'components/_header.html' %}
+<!-- end header section -->
+</div>
+{% block content %}
+{% endblock %}
+
+<!-- footer section strats -->
+{% include 'components/_footer.html' %}
+<!-- end footer section -->
+
+<!-- jQery -->
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<!-- bootstrap js -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!-- slick slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+<!-- custom js -->
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+
+</body>
+</html>

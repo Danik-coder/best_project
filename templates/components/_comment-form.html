@@ -1,0 +1,31 @@
+<div class="comments-section">
+    {% if user.is_authenticated %}
+    <h2>Ваш коментарий</h2>
+
+    <form class="comment-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit btn-success mb-5">Добавить комментарий</button>
+    </form>
+    {% endif %}
+
+    <h3>Существующие комментарии:</h3>
+    <ul class="comments-list text-center">
+        {% for comment in comments %}
+            <li class="comment-item border mt-4 mb-4">
+                <div class="comment-header">
+                    <strong>{{ comment.user.username }}</strong>
+                    <span class="comment-time">{{ comment.time_add|date:"H:i d-m-Y" }}</span>
+                </div>
+                <p class="comment-body">{{ comment.comment }}</p>
+                {% if comment.user == request.user %}
+                <a href="{% url 'remove_comment' comment.pk %}">
+                    <button class="btn btn-danger mb-3">Удалить комментарий</button>
+                </a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="no-comments">Нет комментариев.</li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SUP (Super User Page)</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .body-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-info {
+            width: 200px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Добро пожаловать на страницу администратора</h1>
+
+    <div class="body-buttons">
+        <a href="{% url 'get_type_products' %}">
+            <button class="btn btn-info">Типы продуктов</button>
+        </a>
+        <a href="{% url 'get_products' %}">
+            <button class="btn btn-info">Продукты</button>
+        </a>
+        <a href="{% url 'get_baskets' %}">
+            <button class="btn btn-info">Корзины</button>
+        </a>
+        <a href="{% url 'get_favorites' %}">
+            <button class="btn btn-info">Избранное</button>
+        </a>
+        <a href="{% url 'get_comments' %}">
+            <button class="btn btn-info">Комментарии</button>
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

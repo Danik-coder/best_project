@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container mb-5 mt-5">
+    <div class="container px-4 text-center">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-3">
+                    <img src="{{ product.image.url }}" alt="" style="width: auto; height: 600px">
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3">
+                    <h1>{{ product.name }}</h1>
+                    <div class="mt-4"><span><strong>{{ product.description }}</strong></span></div>
+                    <h4 class="mt-5">Цена: <strong>{{ product.price }}€</strong></h4>
+                    <h6 class="mt-2"><strong>В наличии:</strong> {{ product.stock }} шт</h6>
+                </div>
+                {% if user.is_authenticated %}
+                {% if in_basket %}
+                <div class="btn-group mb-4 mt-3" role="group" aria-label="Basic mixed styles example">
+                    <a href="{% url 'basket_remote' product.id %}">
+                        <button href="{% url 'basket_remote' product.id %}" type="button"
+                                class="btn btn-warning mr-2">-
+                        </button>
+                    </a>
+                    <button class="btn btn-warning">В корзине: {{ basket.quantity }}</button>
+                    <a href="{% url 'basket_add' product.id %}">
+                        <button type="button" class="btn btn-warning ml-2">+</button>
+                    </a>
+                </div>
+                <a href="{% url 'basket_delete' basket.id %}">
+                    <button type="button" class="btn btn-danger ml-3">Удалить товар из корзины</button>
+                </a>
+                {% else %}
+                <a
+                        href="{% url 'basket_add' product.pk %}">
+                    <button
+                            class="btn btn-warning mt-4">Добавить в корзину
+                    </button>
+                </a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'components/_comment-form.html' with product=product form=form %}
+
+{% endblock %}

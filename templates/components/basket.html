@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-3 text-center">
+                <div class="row g-0">
+                     <div class="col d-flex justify-content-center align-items-center">
+                        <img src="{{ basket.product.image.url }}" class="img-fluid rounded-start" alt="...">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                           <div class="row g-0">
+                                <div class="col-sm-9 p-3">
+                                    <a style="text-decoration: none; color: black"
+                                            href="{% url 'detail_product' basket.product.pk %}"><h3
+                                            class="card-title">{{ basket.product.name }}</h3></a>
+                                </div>
+                                <div class="col-3 p-3 mb-2">
+                                     <a style="text-decoration: none; color: black"
+                                            href="{% url 'detail_product' basket.product.pk %}"><h3
+                                            class="card-title">{{ favorite.product.name }}</h3></a>
+                                </div>
+                            </div>
+                            <p class="card-text">{{ basket.product.description }}</p>
+                            <p class="card-text">На складе: <strong>{{ basket.product.stock }} шт</strong></p>
+                            <p class="card-text">Цена: <strong>{{ basket.sum }} €</strong></p>
+                            <p class="card-text">Цена за единицу: <strong>{{ basket.product.price }} €</strong></p>
+                        </div>
+
+                        <div class="btn-group mb-4 mt-3" role="group" aria-label="Basic mixed styles example">
+                            <a href="{% url 'basket_remote' basket.product.id %}">
+                                <button href="{% url 'basket_remote' basket.product.id %}" type="button"
+                                        class="btn btn-warning mr-2">-
+                                </button>
+                            </a>
+                            <button class="btn btn-warning">В корзине: {{ basket.quantity }}</button>
+                            <a href="{% url 'basket_add' basket.product.id %}">
+                                <button type="button" class="btn btn-warning ml-2">+</button>
+                            </a>
+                            <a href="{% url 'basket_delete' basket.id %}">
+                                <button type="button" class="btn btn-danger ml-3">Удалить товар из корзины</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>{{ favorite_product }}</h1>
+

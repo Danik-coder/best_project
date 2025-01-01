@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование профиля
+{% endblock %}
+
+{% block content %}
+<div class="container mb-5">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type='submit' class="btn btn-success mt-5">Сохранить</button>
+    </form>
+</div>
+{% endblock %}

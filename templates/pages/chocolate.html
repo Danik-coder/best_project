@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ChocoLux
+{% endblock %}
+
+{% block content %}
+
+  <div class="main_body_content">
+
+    <!-- chocolate section -->
+
+      <section class="chocolate_section ">
+      <div class="container">
+        <div class="heading_container">
+          <h2>
+            Our chocolate products
+          </h2>
+          <p>
+            Many desktop publishing packages and web pagend web page editors now use Lorem Ipsum as their
+          </p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="chocolate_container">
+          {% for product in products %}
+          <div class="box">
+            <div class="img-box">
+              {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.image }}" style="width: 214px; height: 201px">
+              {% endif %}
+            </div>
+            <div class="detail-box">
+              <h6>
+                <span>{{ product.name }}</span>
+              </h6>
+              <h5>
+                {{ product.price }} €
+              </h5>
+              <h6>На складе: <strong>{{ product.stock }}</strong></h6>
+              <a href="{% url 'detail_product' product.pk %}">
+                КУПИТЬ СЕЙЧАС
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
+
+    <!-- end chocolate section -->
+
+
+  </div>
+
+{% endblock %}

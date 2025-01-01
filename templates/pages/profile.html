@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ user_profile.name }}
+{% endblock %}
+
+{% block style %}
+.rounded-image {
+border-radius: 50%;
+object-fit: cover;
+}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row g-0 text-center">
+        <div class="col-6 col-md-4">
+            {% if user_profile.avatar %}
+            <img src="{{ user_profile.avatar.url }}" alt="" class="rounded-image" style="width: 200px; height: 200px;">
+            {% endif %}
+        </div>
+        <div class="col-sm-6 col-md-8">
+            {% if user_profile.nickname %}
+            <h1 class="mt-5">{{ user_profile.nickname }} profile</h1>
+            {% else %}
+            <h1 class="mt-5">{{ user_profile }}</h1>
+            {% endif %}
+        </div>
+        <div class="container text-center">
+
+            <div class="row">
+                <div class="col-md-4 mt-3">Дата рождения:</div>
+                {% if user_profile.birth_date %}
+                <div class="col-md-4 offset-md-4">{{ user_profile.birth_date }}</div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3">адрес доставки:</div>
+                {% if user_profile.address %}
+                <div class="col-md-4 offset-md-4">{{ user_profile.address }}</div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3">телефонный номер:</div>
+                {% if user_profile.number %}
+                <div class="col-md-4 offset-md-4">{{ user_profile.number }}</div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3">твиттер:</div>
+                {% if user_profile.twitter_link %}
+                <div class="col-md-4 offset-md-4"><a href="{{ user_profile.twitter_link }}">{{ user_profile.twitter_link }}</a></div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3">телеграмм:</div>
+                {% if user_profile.telegram_link %}
+                <div class="col-md-4 offset-md-4"><a href="{{ user_profile.telegram_link }}">{{ user_profile.telegram_link }}</a></div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3">Фейсбук:</div>
+                {% if user_profile.facebook_link %}
+                <div class="col-md-4 offset-md-4"><a href="{{ user_profile.facebook_link }}">{{ user_profile.facebook_link }}</a></div>
+                {% else %}
+                <div class="col-md-4 offset-md-4"><strong>Не заполнено</strong></div>
+                {% endif %}
+
+            </div>
+
+
+            <div class="text-center mt-4 mb-2"><h2><strong>Описание</strong></h2></div>
+            {% if user_profile.bio %}
+            <div class="col-md-4 offset-md-4">{{ user_profile.bio }}</div>
+            {% else %}
+            <div class="col-md-4 offset-md-4"><strong>>Не заполнено</a></strong></div>
+            {% endif %}
+            <a href="{% url 'profile_change' %}">
+                <button class="btn btn-info mt-5 mb-5">Изменить</button>
+            </a>
+            <a href="{% url 'logout' %}">
+                <button class="btn btn-warning mt-5 mb-5 ml-5">Выйти</button>
+            </a>
+
+        </div>
+    </div>
+</div>
+<h1 class="text-center mb-5">Ваша корзина</h1>
+{% if baskets and user.is_authenticated %}
+{% for basket in baskets %}
+{% include 'components/basket.html' %}
+{% endfor %}
+
+<div class="card-body text-center">
+    <p class="card-text">Всего товаров: <strong>{{ total_quantity }} </strong></p>
+    <p class="card-text">Итоговая цена: <strong>{{ total_sum }} €</strong></p>
+</div>
+<div class="text-lg-center mb-5 mt-5">
+<button class="btn btn-info">ОФОРМИТЬ ЗАКАЗ</button>
+</div>
+{% else %}
+<h3 class="text-center">Корзина пуста</h3>
+{% endif %}
+
+{% endblock %}

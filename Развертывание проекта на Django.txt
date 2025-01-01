@@ -1,0 +1,43 @@
+Инструкция по развертыванию проекта Django
+
+
+Python: Убедитесь, что у вас установлена последняя версия Python. Вы можете скачать его с официального сайта python.org.
+Django: Установите Django с помощью команды:
+pip install django
+
+Рекомендуется использовать виртуальное окружение для изоляции зависимостей вашего проекта:
+
+python -m venv venv
+source myenv/bin/activate  # Для Linux/Mac
+myenv\Scripts\activate  # Для Windows
+
+После установки Django создайте новый проект с помощью команды:
+django-admin startproject myproject
+
+Эта команда создаст структуру каталогов вашего проекта, включая файл manage.py, который используется для управления проектом
+
+
+После создания проекта вы можете создать одно или несколько приложений внутри него. Для этого выполните команду:
+django-admin startapp myapp
+
+Настройте базу данных в файле settings.py. Пример для PostgreSQL:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+После настройки базы данных выполните миграции:
+python manage.py migrate
+
+
+Ваш проект готов к запуску командой:
+python manage.py runserver
+
+
+при возникновении ошибок в проекте на Django обратитесь к документации!!!

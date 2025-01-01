@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Избранные
+{% endblock %}
+
+
+{% block content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="row">
+        {% for favorite in favorites %}
+        <div class="col-md-6 mb-4">
+            <div class="card" style="height: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                        {% if favorite.product.image %}
+                        <img src="{{ favorite.product.image.url }}" class="img-fluid rounded-start"
+                             alt="{{ favorite.product.name }}"
+                             style="max-height: 200px; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+
+                            <div class="row g-0">
+                                <div class="col-sm-9 p-3">
+                                    <a style="text-decoration: none; color: black"
+                                       href="{% url 'detail_product' favorite.product.pk %}"><h3
+                                            class="card-title">{{ favorite.product.name }}</h3></a>
+                                </div>
+                                <div class="col-3 p-3 mb-2">
+                                    {% if favorite.product %}
+                                    <a href="{% url 'remove_from_favorites' favorite.product.pk %}">
+                                        <img src="{% static 'star_image/star_true.png' %}" alt="">
+                                    </a>
+                                    {% else %}
+                                    <a href="{% url 'add_to_favorites' favorite.product.pk %}">
+                                        <img src="{% static 'star_image/star_false.png' %}" alt="">
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <p class="card-text">{{ favorite.product.description }}</p>
+                            <h4 class="mt-3">Цена: <strong>{{ favorite.product.price }}€</strong></h4>
+                            <h6><strong>В наличии:</strong> {{ favorite.product.stock }} шт</h6>
+                            <div class="d-grid gap-2 d-md-block">
+                                <a href="{% url 'detail_product' favorite.product.pk %}">
+                                    <button class="btn btn-info" type="button">Детально</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

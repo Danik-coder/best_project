@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Категории
+{% endblock %}
+
+{% block style %}
+h3 {
+color: #d5d5d5 !important; /* Молочный цвет с высоким приоритетом */
+text-align: center; /* Центрирование текста */
+margin: 0; /* Убираем отступы */
+padding: 20px; /* Добавляем отступы для визуального эффекта */
+outline: 2px solid white;
+border-radius: 20%;
+}
+
+.card {
+transition: transform 0.3s; /* Плавный эффект при наведении */
+border: none; /* Убираем стандартную рамку карточки */
+}
+
+
+.card-title {
+font-size: 1.5rem; /* Увеличиваем размер шрифта заголовка */
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Тень для текста заголовка */
+}
+
+.container {
+padding-top: 30px; /* Отступ сверху для контейнера */
+}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for type_product in type_products %}
+        <div class="col-4 mb-5">
+            <div class="card text-bg-dark">
+
+                {% if type_product.background %}
+
+                    <img src="{{ type_product.background.url }}" class="card-img" alt="{{ type_product.name }}"
+                         style="width: 100%; height: 250px; object-fit: cover;">
+                {% endif %}
+                <a href="{% url 'category_detail' type_product.pk %}">
+                    <div class="card-img-overlay d-flex align-items-end">
+                        <h3 class="card-title">{{ type_product.name }}</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
