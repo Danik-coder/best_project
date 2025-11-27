@@ -224,8 +224,7 @@ def remove_from_favorites(request, product_pk):
 
 def favorite_view(request):
     favorites = Favorite.objects.filter(user=request.user)
-    return render(request, 'pages/favourite.html', {'favorites': favorites})\
-
+    return render(request, 'pages/favourite.html', {'favorites': favorites})
 
 
 def add_comment(request, product_id):
